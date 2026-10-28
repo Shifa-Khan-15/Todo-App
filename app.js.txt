@@ -1,0 +1,147 @@
+let todos = [];
+let currentFilter = 'all';
+
+const todoForm = document.getElementById('todo-form');
+const todoInput = document.getElementById('todo-input');
+const todoList = document.getElementById('todo-list');
+const todoCount = document.getElementById('todo-count');
+const filterButtons = document.querySelectorAll('.tab-btn');
+
+async function fetchTodos() {
+  try {
+    const res = await fetch('/api/todos');
+    todos = await res.json();
+    render();
+  } catch (err) {
+    console.error("Fetch failed:", err);
+  }
+}
+
+async function addTodo(title) {
+  try {
+    const res = await fetch('/api/todos', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title })
+    });
+    const newTodo = await res.json();
+    todos.unshift(newTodo);
+    render();
+  } catch (err) {
+    console.error("Add failed:", err);
+  }
+}
+
+async function toggleTodo(id, completed) {
+  try {
+    const res = await fetch(`/api/todos/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ completed: !completed })
+    });
+    const updated = await res.json();
+    todos = todos.map(t => t._id === id ? updated : t);
+    render();
+  } catch (err) {
+    console.error("Toggle failed:", err);
+  }
+}
+
+async function editTodo(id) {
+  const todo = todos.find(t => t._id === id);
+  const newTitle = prompt('Edit your task:', todo.title);
+  if (!newTitle || newTitle.trim() === '') return;
+
+  try {
+    const res = await fetch(`/api/todos/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title: newTitle.trim() })
+    });
+    const updated = await res.json();
+    todos = todos.map(t => t._id === id ? updated : t);
+    render();
+  } catch (err) {
+    console.error("Edit failed:", err);
+  }
+}
+
+async function deleteTodo(id) {
+  try {
+    await fetch(`/api/todos/${id}`, { method: 'DELETE' });
+    todos = todos.filter(t => t._id !== id);
+    render();
+  } catch (err) {
+    console.error("Delete failed:", err);
+  }
+}
+
+function render() {
+  if (!todoList) return;
+  todoList.innerHTML = '';
+  
+  const activeCount = todos.filter(t => !t.completed).length;
+  if (todoCount) {
+    todoCount.textContent = `${activeCount} left`;
+  }
+
+  const filteredTodos = todos.filter(todo => {
+    if (currentFilter === 'todo') return !todo.completed;
+    if (currentFilter === 'done') return todo.completed;
+    return true;
+  });
+
+  filteredTodos.forEach(todo => {
+    const li = document.createElement('li');
+    li.className = `todo-item ${todo.completed ? 'completed' : ''}`;
+    
+    // Injected readable text names instead of line symbols
+    li.innerHTML = `
+      <div class="todo-item-left" id="row-${todo._id}">
+        <span class="todo-checkbox"></span>
+        <span class="todo-text">${todo.title}</span>
+      </div>
+      <div class="actions">
+        <button type="button" class="btn-edit" id="edit-${todo._id}">Edit</button>
+        <button type="button" class="btn-delete" id="del-${todo._id}">Delete</button>
+      </div>
+    `;
+    
+    todoList.appendChild(li);
+
+    // Event hooks linked safely to elements
+    li.querySelector(`#row-${todo._id}`).addEventListener('click', () => toggleTodo(todo._id, todo.completed));
+    li.querySelector(`#edit-${todo._id}`).addEventListener('click', (e) => { e.stopPropagation(); editTodo(todo._id); });
+    li.querySelector(`#del-${todo._id}`).addEventListener('click', (e) => { e.stopPropagation(); deleteTodo(todo._id); });
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  fetchTodos();
+  
+  if (todoForm) {
+    todoForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!todoInput) return;
+      const title = todoInput.value.trim();
+      if (title) {
+        addTodo(title);
+        todoInput.value = '';
+      }
+    });
+  }
+
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      filterButtons.forEach(b => b.classList.remove('active'));
+      e.target.classList.add('active');
+      
+      const type = e.target.textContent.toLowerCase().trim();
+      if (type === 'all') currentFilter = 'all';
+      if (type === 'to do') currentFilter = 'todo';
+      if (type === 'done') currentFilter = 'done';
+      
+      render();
+    });
+  });
+});
