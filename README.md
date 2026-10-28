@@ -1,4 +1,5 @@
 My  Full-Stack Todo List App
+
 Welcome to my full-stack Todo List application! I built this project to practice connecting a visual web page interface to a real cloud database. It includes a clean, minimal design layout and works smoothly on both computers and mobile screens. 
 
 ✨What this App Can Do•Add Tasks: Type a task into the text box and press the "Add Task" button to save it instantly. 
