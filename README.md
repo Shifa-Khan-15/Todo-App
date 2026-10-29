@@ -82,16 +82,14 @@ http://localhost:3000
 
 Authentication must be implemented in the backend as well as the frontend for these features to work correctly.
 
-📚What I Learned from This Project
+6. Live Demo
 
-•How CRUD Works: I learned how to create, read, update, and delete data rows dynamically between a client web browser and a cloud database. 
+Try the deployed application here:
 
-•State Management: I learned how to keep track of a single list array locally in the browser memory and update the text view cleanly whenever a task state changes. 
+Live App: https://todo-app-mfnx.onrender.com
 
-•User Authentication: I learned how login, registration, logout, and authentication checks help manage user access.
+7. GitHub Repository
 
-•AI Task Breakdown: I learned how AI can help divide larger tasks into smaller, actionable steps, making task planning easier and more organized.
+View the complete source code here:
 
-•Database Integration: I learned how to connect a Node.js application to MongoDB Atlas using Mongoose.
-
-•Environment Isolation: I practiced isolating crucial passwords away from public source files for safety. 
+GitHub: https://github.com/Shifa-Khan-15/Todo-App
