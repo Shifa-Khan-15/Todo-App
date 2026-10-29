@@ -260,7 +260,7 @@ app.post('/api/ai/breakdown', requireAuth, async (req, res) => {
           'x-goog-api-key': process.env.GEMINI_API_KEY
         },
         body: JSON.stringify({
-          model: 'gemini-3.8-flash',
+          model: 'gemini-3.6-flash',
           store: false,
           input: `Break this task into exactly 3 short, actionable subtasks.
 Return only a JSON array of 3 strings.
