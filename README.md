@@ -34,6 +34,7 @@ Welcome to my full-stack Todo List application! I built this project to practice
 
 
 ➤Inside the Project Folders
+
 Here is how the files are structured in this folder: 
 
 todo-app/
