@@ -40,28 +40,53 @@ todo-app/
 ├── package lock.json # Project configuration and dependencies
 └── server.js        # The brain of the backend server that talks to the database
 
-⚙️ How to Setup and Run this App Locally
+⚙️ How to Setup and Run this App 
+
+Setup and Run This App Locally
 
 1. Install Node.js
-Make sure you have Node.js installed on your computer. If you are using an older operating system like Windows 7, ensure you install Node.js version 13.14.0 so everything functions correctly. 
 
-2. Download the App Packages
-Open your terminal or Command Prompt window, move into this project folder using the cd command, and run this single command to download the exact project requirements: 
+Install a compatible, supported version of Node.js from the official website:
 
-npm install 
+https://nodejs.org/
 
-This installs the dependencies listed in package.json. jio
+Check that Node.js and npm are installed by running these commands in your terminal or Command Prompt:
 
-3. Configure Your Environment Passwords
-Create a text file in this root directory named .env and paste your MongoDB connection link right inside it like this: 
+node -v
+npm -v
 
-env:
-MONGO_URI=mongodb+srv://<your_username>:<your_password>@cluster.mongodb.net/todo_app?retryWrites=true&w=majority
+2. Download the Project
+
+Clone the GitHub repository:
+
+git clone https://github.com/Shifa-Khan-15/Todo-App.git
+
+Move into the project folder:
+
+cd Todo-App
+
+3. Install Dependencies
+
+Run the following command to install the required packages:
+
+npm install
+
+This installs the dependencies specified in package.json and uses package-lock.json to help maintain consistent package versions.
+
+4. Configure Environment Variables
+
+Create a local .env file in the project root and add the required environment variables:
+
+MONGO_URI=your_mongodb_connection_string
+SESSION_SECRET=your_session_secret
+GEMINI_API_KEY=your_gemini_api_key
 PORT=3000
+
+Replace the example values with your own credentials. Never upload .env or actual secret values to GitHub.
 
 (Note: Never share this .env file with anyone online or upload it to GitHub, to protect your database credentials!) 
 
-4. Start the Application Server!
+5. Start the Application Server!
 To bring your server alive, run this line in your terminal prompt: 
 
 node server.js
@@ -70,7 +95,7 @@ Once your window displays the message "Server running on http://localhost:3000" 
 
 http://localhost:3000
 
-5. User Login and Registration
+6. User Login and Registration
 
 •Register: Create a new account using the registration page.
 
@@ -80,15 +105,13 @@ http://localhost:3000
 
 •Logout: Sign out when you finish using the application.
 
-Authentication must be implemented in the backend as well as the frontend for these features to work correctly.
-
-6. Live Demo
+7. Live Demo
 
 Try the deployed application here:
 
 Live App: https://todo-app-mfnx.onrender.com
 
-7. GitHub Repository
+8. GitHub Repository
 
 View the complete source code here:
 
