@@ -1,4 +1,5 @@
 My  Full-Stack Todo List App
+
 Welcome to my full-stack Todo List application! I built this project to practice connecting a visual web page interface to a real cloud database. It includes a clean, minimal design layout and works smoothly on both computers and mobile screens. 
 
 ✨What this App Can Do
@@ -17,15 +18,20 @@ Welcome to my full-stack Todo List application! I built this project to practice
 
 •AI Task Breakdown: Break down larger tasks into smaller, manageable steps with the help of AI, making it easier to organize work and get started.
 
-•Live Syncing: All list items are saved permanently in a cloud database, meaning your tasks won't disappear even if you close the browser tab! 
+•Cloud Database Storage: Tasks are stored in MongoDB Atlas, allowing them to remain available after you close or reopen the application, provided the database connection is working.
 
 ▶The Tech Stack (How it was built)
 
-•Frontend (The Interface): Built using standard HTML5, clean CSS3 styling, and clear Vanilla JavaScript. It uses premium web fonts (Fraunces & DM Sans) and minimal vector graphics. The interface also includes an AI Task Breakdown feature to help users divide bigger tasks into smaller steps.Login and registration pages to improve the user experience.
+•Frontend (The Interface): Built using standard HTML5, clean CSS3 styling, and clear Vanilla JavaScript. It uses premium web fonts (Fraunces & DM Sans) and minimal vector graphics. Login and registration pages to improve the user experience.
 
 •Backend (The Server): Powered by Node.js and Express to route data back and forth smoothly, handle authentication requests, and manage task operations.
 
 •Database (The Storage): Connected securely to a cloud-hosted MongoDB Atlas database cluster using the Mongoose library. 
+
+•AI Integration: Gemini API powers the AI Task Breakdown feature.
+
+•Deployment: The application is hosted on Render, with its source code maintained on GitHub.
+
 
 ➤Inside the Project Folders
 Here is how the files are structured in this folder: 
@@ -38,6 +44,7 @@ todo-app/
 │   └── style.css    # The design sheets, fonts, colors, and layout spacing
 ├── package.json     # Configuration file tracking my app's external plugins
 ├── package lock.json # Project configuration and dependencies
+├── .gitignore       # Excludes sensitive and unnecessary file
 └── server.js        # The brain of the backend server that talks to the database
 
 ⚙️ How to Setup and Run this App 
@@ -105,13 +112,13 @@ http://localhost:3000
 
 •Logout: Sign out when you finish using the application.
 
-7. Live Demo
+🌐 Live Demo
 
 Try the deployed application here:
 
 Live App: https://todo-app-mfnx.onrender.com
 
-8. GitHub Repository
+▶️ GitHub Repository
 
 View the complete source code here:
 
