@@ -449,15 +449,6 @@ ul { padding: 8px 14px 12px; list-style: none; margin: 0; }
   .todo-item { min-height: 61px; padding: 9px 6px; }
   .list-footer { padding: 0 15px 12px; font-size: 11px; }
 }
-[hidden] {
-  display: none !important;
-}
-/* Load the original fonts */
-
-/* Keep hidden screens completely hidden */
-[hidden] {
-  display: none !important;
-}
 
 /* Authentication screen styling */
 #auth-section .hero-section > p:not(.subtitle) {
@@ -640,4 +631,9 @@ ul { padding: 8px 14px 12px; list-style: none; margin: 0; }
  #app-section .hero-section h1 {
     font-size: clamp(40px, 5vw, 50px);
     line-height: 1.2;
+}
+
+/* Keep hidden screens completely hidden */
+[hidden] {
+    display: none !important;
 }
