@@ -75,16 +75,16 @@ function requireAuth(req, res, next) {
 
 // Current login status
 app.get('/api/auth/me', (req, res) => {
-  if (!req.session.userId) {
-    return res.json({ user: null });
-  }
-
-  res.json({
-    user: {
-      id: req.session.userId,
-      email: req.session.email
+    if (!req.session.userId) {
+        return res.status(401).json({ user: null });
     }
-  });
+
+    res.json({
+        user: {
+            id: req.session.userId,
+            email: req.session.email
+        }
+    });
 });
 
 // Register
